@@ -8,6 +8,8 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
+    storage[last] = value;
+    last += 1;
   };
 
   someInstance.dequeue = function() {
