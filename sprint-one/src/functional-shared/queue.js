@@ -6,18 +6,25 @@ var Queue = function() {
   queue.first = 0;
   queue.last = 0;
 
-  return _.extend(queue, Queue.queueMethods);
+  return _.extend(queue, queueMethods);
 
 };
 
-
-
-Queue.queueMethods = {
+var queueMethods = {
   size: function() {
     return this.last - this.first;
   },
   enqueue : function(value) {
-    this.storage[this.last];
+    this.storage[this.last] = value;
     this.last += 1;
+  }, 
+  dequeue : function() {
+    if (this.last > this.first) {
+    var temp = this.storage[this.first];
+    delete this.storage[this.first];
+      this.first++;
+    }
+
+    return temp;
   }
 };
