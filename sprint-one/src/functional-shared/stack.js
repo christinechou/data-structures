@@ -7,6 +7,10 @@ var Stack = function() {
   return _.extend(stack, stackMethods);
 };
 
-var stackMethods = {};
+var stackMethods = {
+  size: function() {
+    return this.key;
+  }
+};
 
 
