@@ -16,13 +16,12 @@ var stackMethods = {
     this.key += 1;
   },
   pop: function() {
-    var temp = this.storage[this.key];
+    var temp = this.storage[this.key - 1];
     delete this.storage[this.key];
     if (this.key > 0) {
       this.key -= 1;
     }
     return temp;
-
   }
 };
 
