@@ -19,6 +19,21 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
+  var nChildren = this.children.length;
+
+  if(this.value === target) {
+    return true;
+  } else if(nChildren){
+    return _.reduce(this.children, function(memo, current){
+      if (!memo) {
+        memo = current.contains(target);
+      }
+      return memo;
+    }, false);
+  }
+
+  return false;
+
 };
 
 
