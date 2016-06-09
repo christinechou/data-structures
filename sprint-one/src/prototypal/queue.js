@@ -15,6 +15,14 @@ var queueMethods = {
   enqueue: function(value) {
     this.storage[this.last] = value;
     this.last += 1;
+  },
+  dequeue: function() {
+    var temp = this.storage[this.first];
+    if (this.last > this.first) {
+      delete this.storage[this.first];
+      this.first += 1;
+    }
+    return temp;
   }
 };
 
