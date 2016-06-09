@@ -27,6 +27,18 @@ var LinkedList = function() {
 
   list.contains = function(target) {
     //loop through the linked list to find the target value
+    var node = this.head;
+    return traverseNode(node);
+
+    function traverseNode(node) {
+      if (node.value === target) {
+        return true;
+      }
+      else if (node.next !== null) {
+        return traverseNode(node.next);
+      }
+      return false;
+    }
   };
 
   return list;
