@@ -14,6 +14,15 @@ var stackMethods = {
   push: function(value) {
     this.storage[this.key] = value;
     this.key += 1;
+  },
+  pop: function() {
+    var temp = this.storage[this.key];
+    delete this.storage[this.key];
+    if (this.key > 0) {
+      this.key -= 1;
+    }
+    return temp;
+
   }
 };
 
