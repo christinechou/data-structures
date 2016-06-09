@@ -17,7 +17,7 @@ var stackMethods = {
   },
   pop: function() {
     var temp = this.storage[this.key - 1];
-    delete this.storage[this.key];
+    delete this.storage[this.key - 1];
     if (this.key > 0) {
       this.key -= 1;
     }
