@@ -55,4 +55,7 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+  Linear time.  O(n).  Run time increases with the size of the input.
+
  */
