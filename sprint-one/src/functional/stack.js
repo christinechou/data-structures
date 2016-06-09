@@ -7,12 +7,15 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
+
     storage[key] = value;
     key += 1;
+
   };
 
   someInstance.pop = function() {
     if (key > 0) {
+
       var temp = storage[key - 1];
       delete storage[key - 1];
       key -= 1;
