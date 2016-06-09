@@ -1,5 +1,5 @@
 var Stack = function() {
-  var stack = Object.create(Stack.stackMethods);
+  var stack = Object.create(stackMethods);
   stack.storage = {};
   stack.key = 0;
 
@@ -24,6 +24,3 @@ var stackMethods = {
     this.key += 1;
   }
 };
-
-Stack.stackMethods = stackMethods;
-
