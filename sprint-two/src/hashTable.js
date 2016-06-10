@@ -6,33 +6,52 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
+  var stor = this._storage;
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(index, v);
+  var buckets = stor.get(index);
+  var keyValIndexToReplace;
+
+  if (!buckets) {
+    stor.set(index, []);
+    buckets = stor.get(index);
+  }
+  var hasKey = _.some(buckets, function(val, i) {
+    if (val[0] === k) {
+      keyValIndexToReplace = i;
+    }
+    return val[0] === k;
+  });
+  if (hasKey) {
+    buckets[keyValIndexToReplace] = [k,v];
+  } else {
+    buckets.push([k, v]);
+  }
+
 };
 
 HashTable.prototype.retrieve = function(k) {
+  var stor = this._storage;
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index);
+  var buckets = stor.get(index);
+
+  for (var i = 0; i < buckets.length; i++) {
+    if (buckets[i][0] === k) {
+      return buckets[i][1];
+    }
+  }
 };
 
 HashTable.prototype.remove = function(k) {
+  var stor = this._storage;
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var h;
-  this._storage.each(function(val, key) {
-    if (index === key) {
-      h = new HashTable();
+  var buckets = stor.get(index);
+  var newBucket = [];
+  _.each(buckets, function(keyval, i) {
+    if (keyval[0] !== k) {
+      newBucket.push(keyVal);
     }
   });
-
-  if (h !== undefined) {
-    this._storage.each(function(val, key) {
-      if (index !== key) {
-        h.insert(key, val);
-      }
-    });
-
-  }
-  this._storage = h._storage;
+  stor.set(index, newBucket);
 };
 
 
@@ -41,7 +60,7 @@ HashTable.prototype.remove = function(k) {
  * Complexity: What is the time complexity of the above functions?
  .insert: O(1)
  .retrieve: O(1)
- .remove O(n)
+ .remove O(1)
  */
 
 
