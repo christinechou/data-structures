@@ -24,8 +24,8 @@ treeMethods.contains = function(target) {
 
   if (this.value === target) {
     return true;
-  } else if(nChildren) {
-    return _.reduce(this.children, function(memo, current){
+  } else if (nChildren) {
+    return _.reduce(this.children, function(memo, current) {
       if (!memo) {
         memo = current.contains(target);
       }
@@ -40,11 +40,12 @@ treeMethods.contains = function(target) {
 treeMethods.removeFromParent = function () {
   var parentNode = this.parent;
 
-  for (var i = 0; i < parentNode.children.length; i++) {
-    if (parentNode.children[i] === this) {
+  _.each(parentNode.children, function(child, i) {
+    if (child === this) {
       parentNode.children.splice(i, 1);
     }
-  }
+  });
+  
   this.parent = null;
 };
 
