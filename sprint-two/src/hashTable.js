@@ -7,6 +7,7 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
 };
 
+<<<<<<< HEAD
 
 /////////////////////////////
 // Implemented using HOF
@@ -109,7 +110,7 @@ HashTable = HashTableHOF;
  * Complexity: What is the time complexity of the above functions?
  .insert: O(1)
  .retrieve: O(1)
- .remove O(n)
+ .remove O(1)
  */
 
 
